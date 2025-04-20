@@ -9,6 +9,8 @@
 
 This is the reference implementation for enabling **cross-tenant architecture in Azure**, focused on centralizing services using **Azure Lighthouse**, **Private DNS Resolver**, and **Virtual WAN**. This repository provides AzCLI and Terraform-based deployments for both tenants and enforces governance using custom Azure Policies.
 
+![Architecture](resources/Multi-Tenant%20Architecture.png)
+
 ## 🚀 Introduction
 
 This repository demonstrates how to:
@@ -193,6 +195,7 @@ terraform destroy -auto-approve -var tenanta_subscription_id=<tenant_a_sub_id> -
 ```
 
 ## 🧠 Learn More
-Azure Lighthouse Overview
-Private DNS Resolver Docs
-Azure Virtual WAN
+- [Azure Lighthouse Overview](https://learn.microsoft.com/en-us/azure/lighthouse/overview)
+- [Private DNS Resolver Overview](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview)
+- [Azure vWAN Overview](https://learn.microsoft.com/en-us/azure/virtual-wan/virtual-wan-about)
+- [Azure Cross Tenant vWAN Connectivity](https://docs.azure.cn/en-us/virtual-wan/cross-tenant-vnet-az-cli)
