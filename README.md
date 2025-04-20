@@ -173,7 +173,7 @@ Here’s an example of a successful DNS query from Tenant B resolving a custom d
 
 ![DNS Resolution](resources/azr.cloud-nslookup.png)
 
-## Clean up resources
+## 🧹 Clean up resources
 
 Once you have successully completed, please ensure to delete all the resources. You can do manually or follow the below to delete all of delegations, policies and resources.
 
