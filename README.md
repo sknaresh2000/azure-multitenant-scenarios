@@ -128,13 +128,14 @@ This deploys:
 ```
 az login - tenant <tenant_b_id>
 storage_id=$(az storage account create \
-   --name tenantbstoracnt \
+   --name <sto_accnt_name> \
    --resource-group azure-multitenant-tenant-b-rg  \
    --location eastus \
    --sku Standard_RAGRS \
    --kind StorageV2 \
    --min-tls-version TLS1_2 \
    --allow-blob-public-access false \
+   --public-network-access Disabled \
    --query id \
    --output tsv)
 az network private-endpoint create \
@@ -185,7 +186,7 @@ az login - tenant <tenant_b_id>
 az policy assignment delete --name enforce-dns-zone-group
 az policy definition delete --name Deploy-DNS
 az network private-endpoint delete --name stor-private-endpoint  --resource-group azure-multitenant-tenant-b-rg
-az storage account delete --name tenantbstoracnt --resource-group azure-multitenant-tenant-b-rg
+az storage account delete --name <sto_accnt_name> --resource-group azure-multitenant-tenant-b-rg
 az stack sub delete --name lighthouse-delegations --action-on-unmanage deleteAll
 cd ../tenant-b
 terraform destroy -auto-approve -var tenantb_subscription_id=<tenant_b_sub_id> -var vmb_admin_password=<vm_password> -var tenantb_id=<tenant_b_id>
