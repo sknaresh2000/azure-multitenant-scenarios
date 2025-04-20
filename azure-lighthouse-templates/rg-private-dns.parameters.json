@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "mspOfferName": {
+            "value": "Lighthouse-DNS-Onboarding"
+        },
+        "mspOfferDescription": {
+            "value": "Lighthouse-DNS-Onboarding"
+        },
+        "managedByTenantId": {
+            "value": "<tenant_b_id>"
+        },
+        "authorizations": {
+            "value": [
+                    { 
+                        "principalId": "<policy_system_assigned_identity_in_tenant_b>", 
+                        "roleDefinitionId": "b12aa53e-6015-4669-85d0-8515ebb3ae7f",
+                        "principalIdDisplayName": "PDNS Contributor" 
+                    },
+                    { 
+                        "principalId": "<object_id_in_tenant_b", 
+                        "roleDefinitionId": "91c1777a-f3dc-4fae-b103-61d183457e46",
+                        "principalIdDisplayName": "Managed Services Registration Assignment Delete" 
+                    }
+                ]
+        },
+        "resourceGroups": {
+            "value": [
+                {
+                    "rgName": "azure-multitenant-tenant-a-rg"
+                }
+            ]
+        }
+    }
+}

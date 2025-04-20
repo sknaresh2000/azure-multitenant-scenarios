@@ -1,0 +1,45 @@
+{
+    "mode": "All",
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.ManagedServices/registrationDefinitions"
+          },
+          {
+            "count": {
+              "field": "Microsoft.ManagedServices/registrationDefinitions/authorizations[*]",
+              "where": {
+                "not": {
+                  "anyOf": [
+                    {
+                      "value": "[concat(current('Microsoft.ManagedServices/registrationDefinitions/authorizations[*].principalId'),':',current('Microsoft.ManagedServices/registrationDefinitions/authorizations[*].roleDefinitionId'))]",
+                      "in": "[parameters('listOfAllowedAuthorizations')]"
+                    }
+                  ]
+                }
+              }
+            },
+            "greater": 0
+          }
+        ]
+      },
+      "then": {
+        "effect": "deny"
+      }
+    },
+    "parameters": {
+      "listOfAllowedAuthorizations": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "Allowed Authorizations",
+          "description": "List of the allowed authorizations that can be onboarded through Azure Lighthouse..Eg PrincipalID:RoleDefinitionID"
+        },
+        "defaultValue": [
+          "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+          "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        ]
+      }
+    }
+  }

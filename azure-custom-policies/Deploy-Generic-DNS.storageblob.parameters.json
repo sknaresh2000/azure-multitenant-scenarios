@@ -1,0 +1,16 @@
+{
+    "privateDnsZoneIds": {
+        "value": [
+            "/subscriptions/<sub_id>/resourceGroups/azure-multitenant-tenant-a-rg/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net"
+        ]
+    },
+    "privateEndpointPrivateLinkServiceId": {
+        "value": "Microsoft.Storage/storageAccounts"
+    },
+    "privateEndpointGroupId": {
+        "value": "blob"
+    },
+    "effect": {
+        "value": "DeployIfNotExists"
+    }
+}

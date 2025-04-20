@@ -1,0 +1,37 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "mspOfferName": {
+            "value": "Lighthouse-Onboarding"
+        },
+        "mspOfferDescription": {
+            "value": "Lighthouse-Onboarding"
+        },
+        "managedByTenantId": {
+            "value": "<tenant_a_id>"
+        },
+        "authorizations": {
+            "value": [
+                    { 
+                        "principalId": "<object_id_in_tenant_a>", 
+                        "roleDefinitionId": "4d97b98b-1d4f-4787-a291-c67834d212e7",
+                        "principalIdDisplayName": "Network Contributor" 
+                    },
+                    { 
+                        "principalId": "<object_id_in_tenant_a>", 
+                        "roleDefinitionId": "91c1777a-f3dc-4fae-b103-61d183457e46",
+                        "principalIdDisplayName": "Managed Services Registration Assignment Delete" 
+                    }
+
+                ]
+        },
+        "resourceGroups": {
+            "value": [
+                {
+                    "rgName": "azure-multitenant-tenant-b-rg"
+                }
+            ]
+        }
+    }
+}
