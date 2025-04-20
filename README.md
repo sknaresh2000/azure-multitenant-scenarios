@@ -7,7 +7,7 @@
 ![Scenario: vWAN](https://img.shields.io/badge/Scenario-vWAN_Connectivity-purple)
 ![Deployable](https://img.shields.io/badge/Deploy-Ready-brightgreen?logo=azurepipelines)
 
-This is the reference implementation for enabling **cross-tenant architecture in Azure**, focused on centralizing services using **Azure Lighthouse**, **Private DNS Resolver**, and **Virtual WAN**. This repository provides AzCLI and Terraform-based deployments for both tenants and enforces governance using custom Azure Policies.
+This is a reference implementation for enabling **cross-tenant architecture in Azure**, focused on centralizing services using **Azure Lighthouse**, **Private DNS Resolver**, and **Virtual WAN**. This repository provides AzCLI and Terraform-based deployments for both tenants and enforces governance using custom Azure Policies.
 
 ![Architecture](resources/Multi-Tenant%20Architecture.png)
 
