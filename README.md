@@ -60,7 +60,7 @@ This deploys below resources in Tenant A:
 ```
 cd ../tenant-b
 terraform init
-az login - tenant <tenant_b_id>
+az login --tenant <tenant_b_id>
 terraform apply -auto-approve -var tenantb_subscription_id=<tenant_b_sub_id> -var vmb_admin_password=<vm_password> -var tenantb_id=<tenant_b_id>
 ```
 
@@ -76,7 +76,7 @@ There are couple of custom policies
 
 ```
 cd ../azure-policy-definition
-az login - tenant <tenant_b_id>
+az login --tenant <tenant_b_id>
 az policy definition create \
    --name "Deploy-DNS" \
    --display-name "Link DNS zone records to central DNS zone" \
@@ -99,9 +99,9 @@ This deploys the custom policy to enforce creation of a private DNS zone group w
 The parameters file will need to be updated with relevant object id's and tenant id's before running the below command.
 ```
 cd ../azure-lighthouse-templates
-az login - tenant <tenant_b_id>
+az login --tenant <tenant_b_id>
 az stack sub create --name lighthouse-delegations --location eastus --action-on-unmanage deleteAll --template-file rg.json --parameters rg.parameters.json --deny-settings-mode none
-az login - tenant <tenant_a_id>
+az login --tenant <tenant_a_id>
 az stack sub create --name lighthouse-dns-delegations --location eastus --action-on-unmanage deleteAll --template-file rg.json --parameters rg-private-dns.parameters.json --deny-settings-mode none
 ```
 
@@ -116,7 +116,7 @@ This step delegates
 ```
 cd ../multi-tenant-scenarios
 terraform init
-az login - tenant <tenant_a_id>
+az login --tenant <tenant_a_id>
 terraform apply -auto-approve -var tenanta_subscription_id=<tenant_a_sub_id> -var  tenantb_subscription_id=<tenant_b_sub_id> -var tenanta_id=<tenant_a_id> -var tenantb_id=<tenant_b_id>
 ```
 
@@ -124,9 +124,9 @@ This deploys:
 - VNet-to-VNet connections across tenants via Virtual WAN
 - Cross-tenant Private DNS zone links
 
-#### 6. Create a Storage Account in Tenant B
+#### 6. Create a Storage Account and Private Endpoint in Tenant B
 ```
-az login - tenant <tenant_b_id>
+az login --tenant <tenant_b_id>
 storage_id=$(az storage account create \
    --name <sto_accnt_name> \
    --resource-group azure-multitenant-tenant-b-rg  \
@@ -149,7 +149,7 @@ az network private-endpoint create \
 
 This deploys:
 - Storage account in Tenant B
-- Creates a Private Endpoint for that Storage Account in Tenant B without DNS zone
+- Private Endpoint for that Storage Account in Tenant B without DNS zone
 
 ## ✅ Validation Steps
 Once all deployments are complete, validate the setup:
@@ -179,10 +179,10 @@ Once you have successully completed, please ensure to delete all the resources. 
 
 ```
 cd ../multi-tenant-scenarios
-az login - tenant <tenant_a_id>
+az login --tenant <tenant_a_id>
 terraform destroy -auto-approve -var tenanta_subscription_id=<tenant_a_sub_id> -var  tenantb_subscription_id=<tenant_b_sub_id> -var tenanta_id=<tenant_a_id> -var tenantb_id=<tenant_b_id>
 az stack sub delete --name lighthouse-dns-delegations --action-on-unmanage deleteAll
-az login - tenant <tenant_b_id>
+az login --tenant <tenant_b_id>
 az policy assignment delete --name enforce-dns-zone-group
 az policy definition delete --name Deploy-DNS
 az network private-endpoint delete --name stor-private-endpoint  --resource-group azure-multitenant-tenant-b-rg
