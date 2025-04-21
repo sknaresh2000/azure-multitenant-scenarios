@@ -196,6 +196,7 @@ terraform destroy -auto-approve -var tenanta_subscription_id=<tenant_a_sub_id> -
 ```
 
 ## 🧠 Learn More
+- [When Tenants Talk: Azure Lighthouse — Enabling Cross-Tenant Architecture in Azure](https://medium.com/@sknaresh2000/when-tenants-talk-azure-lighthouse-enabling-cross-tenant-architecture-in-azure-8caf989d9967)
 - [Azure Lighthouse Overview](https://learn.microsoft.com/en-us/azure/lighthouse/overview)
 - [Private DNS Resolver Overview](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview)
 - [Azure vWAN Overview](https://learn.microsoft.com/en-us/azure/virtual-wan/virtual-wan-about)
